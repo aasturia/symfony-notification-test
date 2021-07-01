@@ -1,0 +1,25 @@
+parameters:
+# Здесь могут быть параметры бандла
+
+services:
+
+  # Конфигурация для всех сервисов  этого файла по умолчанию
+  _defaults:
+
+    # Включает механизм автоматической подстановки зависимостей контейнера
+    # в ваши сервисы по typehints аргументов конструктора (и экшнов контроллеров)
+    # https://symfony.com/doc/current/service_container.html#the-autowire-option
+    autowire: true
+
+    # Включает механизм автоконфигурации:
+    # сервисам автоматически добавляются теги по имплементируемым интерфейсам
+    # https://symfony.com/doc/current/service_container.html#the-autoconfigure-option
+    autoconfigure: true
+
+
+  # Регистрируем контроллеры бандла как DI-сервисы
+  corite\NotificationBundle\Controller\TestController: ~
+  corite\NotificationBundle\Controller\NotificationController: ~
+  corite\NotificationBundle\Controller\Transport: ~
+  corite\NotificationBundle\Controller\Rules: ~
+

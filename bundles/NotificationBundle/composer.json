@@ -1,0 +1,49 @@
+{
+  "name": "corite/notification-bundle",
+  "version": "0.1.0",
+  "type": "symfony-bundle",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "alexasturia",
+      "email": "alex.asturia@gmail.com"
+    }
+  ],
+  "require": {
+    "ext-json": "*",
+    "sensio/framework-extra-bundle": "^6.1",
+    "symfony/mailer": "5.3.*",
+    "symfony/maker-bundle": "^1.32",
+    "symfony/monolog-bundle": "^3.7",
+    "symfony/telegram-notifier": "5.3.*",
+    "symfony/twig-bundle": "5.3.*"
+  },
+  "require-dev": {
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "corite\\NotificationBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "corite\\NotificationBundle\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test" : "./vendor/bin/simple-phpunit"
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": false,
+      "require": "5.3.*"
+    }
+  }
+}
+
+

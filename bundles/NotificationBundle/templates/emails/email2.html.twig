@@ -1,0 +1,20 @@
+<h1>Проверка отсылки уведомления {{ email.toName }}!</h1>
+
+<p>
+    Проверка прошла удачно. Письмо доставлено.
+</p>
+<p><code>{{ email.to[0].address }}</code></p>
+
+
+    {% for project in projects %}
+<p>
+        Project name: {{ project.name }}<br>
+        Project description: {{ project.description }}<br>
+    {% else %}
+        No users have been found.
+</p>
+    {% endfor %}
+
+
+
+

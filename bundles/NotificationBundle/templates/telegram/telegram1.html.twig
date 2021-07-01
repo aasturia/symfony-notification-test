@@ -1,0 +1,18 @@
+<b>Проверка отсылки уведомления !</b>
+<b>Шаблон №1</b>
+
+<pre>
+Проверка прошла удачно. Сообщение доставлено.
+</pre>
+<pre>
+{% for project in projects %}
+Project name: {{ project.name }}
+Project description: {{ project.description }}
+{% else %}
+Нет ни одного подходящего проекта.
+{% endfor %}
+</pre>
+
+
+
+
