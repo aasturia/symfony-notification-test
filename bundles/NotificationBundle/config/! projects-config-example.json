@@ -1,0 +1,67 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Project 1",
+      "description" : "Project Description 1",
+      "stage": "planning",
+      "categories": [
+        2,
+        5,
+        6
+      ],
+      "created_at": 1549459567,
+      "modified_at": 1549459594
+    },
+    {
+      "id": 2,
+      "name": "Project 2",
+      "description" : "Project Description 2",
+      "stage": "planning",
+      "categories": [
+        2,
+        6
+      ],
+      "created_at": 1549459243,
+      "modified_at": 1549459564
+    },
+    {
+      "id": 3,
+      "name": "Project 3",
+      "description" : "Project Description 3",
+      "stage": "finished",
+      "categories": [
+        5,
+        6,
+        7
+      ],
+      "created_at": 1549459200,
+      "modified_at": 1549559200
+    },
+    {
+      "id": 4,
+      "name": "Project 4",
+      "description" : "Project Description 4",
+      "stage": "finished",
+      "categories": [
+        6,
+        7
+      ],
+      "created_at": 1549459800,
+      "modified_at": 1549479800
+    },
+    {
+      "id": 5,
+      "name": "Project 5",
+      "description" : "Project Description 5",
+      "stage": "starting",
+      "categories": [
+        2,
+        7,
+        8
+      ],
+      "created_at": 1549459000,
+      "modified_at": 1549469999
+    }
+  ]
+}
