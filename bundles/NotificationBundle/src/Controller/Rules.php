@@ -2,10 +2,6 @@
 
 namespace corite\NotificationBundle\Controller;
 
-use Exception;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-
 class Rules
 {
     private string $operator;
@@ -14,16 +10,19 @@ class Rules
 
     private $effects;
 
-    public function __construct()
+    private $logger;
+
+    public function __construct(NotificationLogger $logger)
     {
-        $logger = new Logger('notification-service');
-        $logger->pushHandler(new StreamHandler('../var/log/notifications.log', Logger::DEBUG));
+        $this->logger = $logger;
 
+        $dir = dirname(__DIR__) . DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR . 'config';
 
-        if (is_file(__DIR__.'/../../config/rules.json')) {
-            $rules = file_get_contents(__DIR__.'/../../config/rules.json');
+        if (is_file($dir . DIRECTORY_SEPARATOR . 'rules.json')) {
+            $rules = file_get_contents($dir . DIRECTORY_SEPARATOR . 'rules.json');
+            $logger->info("Config file rules.json was loaded successfully");
         } else {
-            throw new Exception('There is problem with file rules.json');
+            $logger->info("There is problem with config file rules.json");
         }
 
         $rules = json_decode($rules, false);

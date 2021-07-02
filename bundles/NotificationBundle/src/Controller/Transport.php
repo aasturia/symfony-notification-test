@@ -19,25 +19,28 @@ class Transport
     private $effects;
     private $mailer;
     private $chatter;
+    private $logger;
 
-    public function __construct(Rules $rules, MailerInterface $mailer, ChatterInterface $chatter)
+    public function __construct(Rules $rules, MailerInterface $mailer, ChatterInterface $chatter, NotificationLogger $logger)
     {
         $this->effects = $rules->getEffects();
         $this->mailer = $mailer;
         $this->chatter = $chatter;
+        $this->logger = $logger;
     }
 
     //send all notifications through transport according "type" field in rules effects
-    public function sendNotification($data, $logger)
+    public function sendNotification($data)
     {
+        $this->logger->info("trying to send notifications");
         foreach ($this->effects as $effect) {
             $transportName = ucwords($effect->type);
             $sendFunction = "sendThrough" . $transportName;
-            $this->$sendFunction($data, $effect, $logger);
+            $this->$sendFunction($data, $effect);
         }
     }
 
-    private function sendThroughSmtp($data, $effect, $logger)
+    private function sendThroughSmtp($data, $effect)
     {
         $email = (new TemplatedEmail())
             ->from('alex.canzona@gmail.com')
@@ -51,14 +54,14 @@ class Transport
 
         try {
             $this->mailer->send($email);
-            $logger->info('The email was sent successfully  through smtp to recipient ' . $effect->recipient . ' with template' . $effect->template_id);
+            $this->logger->info('The email was sent successfully  through smtp to recipient ' . $effect->recipient . ' with template' . $effect->template_id);
         } catch (MailerTransportExceptionInterface $e) {
-            $logger->error('some trouble with sending email: ' . $e);
+            $this->logger->error('some trouble with sending email: ' . $e);
         }
 
     }
 
-    private function sendThroughTelegram($data, $effect, $logger)
+    private function sendThroughTelegram($data, $effect)
     {
         $loader = new FilesystemLoader(__DIR__.'/../../templates/telegram/');
         $twig = new Environment($loader);
@@ -73,9 +76,9 @@ class Transport
         
         try {
             $this->chatter->send($chatMessage);
-            $logger->info('The notification was sent successfully through telegram to recipient '.$effect->recipient.' with template'.$effect->template_id);
+            $this->logger->info('The notification was sent successfully through telegram to recipient '.$effect->recipient.' with template'.$effect->template_id);
         } catch (TransportExceptionInterface $e) {
-            $logger->error('some error with sending to Telegram: '.$e);
+            $this->logger->error('some error with sending to Telegram: '.$e);
         }
 
     }
