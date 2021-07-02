@@ -27,7 +27,7 @@ class Transport
         $this->chatter = $chatter;
     }
 
-    //send notifications through transport according "type" field in rules effects
+    //send all notifications through transport according "type" field in rules effects
     public function sendNotification($data, $logger)
     {
         foreach ($this->effects as $effect) {
