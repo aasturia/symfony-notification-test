@@ -6,14 +6,10 @@
 
     {% for project in projects %}
 <p>
-        Project id: {{ project.id }}<br>
-        Project name: {{ project.name }}<br>
-        Project stage: {{ project.stage }}<br>
-        Project description: {{ project.description }}<br>
-</p>
-    {% else %}
-<p>
-        No users have been found.
+    Project id: {{ project.id }}<br>
+    Project name: {{ project.name }}<br>
+    Project stage: {{ project.stage }}<br>
+    Project description: {{ project.description }}<br>
 </p>
     {% endfor %}
 
